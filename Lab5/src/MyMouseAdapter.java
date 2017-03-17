@@ -76,32 +76,83 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Do nothing
 					} else {
 						//Released the mouse button on the same cell where it was pressed
+						if (gridX == 0 && gridY == 0){
+							Color newColor = null;
+							for (int i = 1; i <= 8; i++) {
+								switch (generator.nextInt(5)) {
+								case 0:
+									newColor = Color.YELLOW;
+									break;
+								case 1:
+									newColor = Color.MAGENTA;
+									break;
+								case 2:
+									newColor = Color.BLACK;
+									break;
+								case 3:
+									newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+									break;
+								case 4:
+									newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+									break;
+								}
+								myPanel.colorArray[i*1][i*1] = newColor;
+								myPanel.repaint();
+							}
+						}
 						if ((gridX == 0) || (gridY == 0)) {
-							if (!(gridY == 0)){
+							if (gridX == 0){
 								Color newColor = null;
-								for (int i = 3; i < myPanel.mouseDownGridX+13; i++) {
-									switch (generator.nextInt(5)) {
-									case 0:
-										newColor = Color.YELLOW;
-										break;
-									case 1:
-										newColor = Color.MAGENTA;
-										break;
-									case 2:
-										newColor = Color.BLACK;
-										break;
-									case 3:
-										newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
-										break;
-									case 4:
-										newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
-										break;
+								if (gridY == 10) {
+									for (int i = 0; i < 3; i++) {
+										for (int j = 0; j < 3; j++){
+											switch (generator.nextInt(5)) {
+											case 0:
+												newColor = Color.YELLOW;
+												break;
+											case 1:
+												newColor = Color.MAGENTA;
+												break;
+											case 2:
+												newColor = Color.BLACK;
+												break;
+											case 3:
+												newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+												break;
+											case 4:
+												newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+												break;
+											}
+											myPanel.colorArray[4+i][4+j] = newColor;
+											myPanel.repaint();
+										}
 									}
+								}
+								else{
+									for (int i = 3; i < myPanel.mouseDownGridX+13; i++) {
+										switch (generator.nextInt(5)) {
+										case 0:
+											newColor = Color.YELLOW;
+											break;
+										case 1:
+											newColor = Color.MAGENTA;
+											break;
+										case 2:
+											newColor = Color.BLACK;
+											break;
+										case 3:
+											newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+											break;
+										case 4:
+											newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+											break;
+										}
 									myPanel.colorArray[myPanel.getGridX(i*25+i,y)][myPanel.mouseDownGridY] = newColor;
 									myPanel.repaint();
+									}
 								}
 							}
-							if (!(gridX == 0)){
+							if (gridY == 0){
 								Color newColor = null;
 								for (int i = 3; i < myPanel.mouseDownGridY+13; i++) {
 									switch (generator.nextInt(5)) {
